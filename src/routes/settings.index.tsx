@@ -12,7 +12,7 @@ import { downloadCSV, exportCSV, parseCSV } from "@/lib/storage/csv";
 import { toast } from "sonner";
 import { ChevronRight, Download, Upload, RotateCcw, Wallet, Tags } from "lucide-react";
 
-export const Route = createFileRoute("/settings")({
+export const Route = createFileRoute("/settings/")({
   head: () => ({
     meta: [
       { title: "Settings — Shaheem Finance" },

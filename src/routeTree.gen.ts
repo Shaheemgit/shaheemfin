@@ -10,21 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TransactionsRouteImport } from './routes/transactions'
-import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as BudgetRouteImport } from './routes/budget'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SettingsIndexRouteImport } from './routes/settings.index'
 import { Route as SettingsCategoriesRouteImport } from './routes/settings.categories'
 import { Route as SettingsAccountsRouteImport } from './routes/settings.accounts'
 
 const TransactionsRoute = TransactionsRouteImport.update({
   id: '/transactions',
   path: '/transactions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsRoute = ReportsRouteImport.update({
@@ -42,44 +37,49 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsIndexRoute = SettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SettingsCategoriesRoute = SettingsCategoriesRouteImport.update({
-  id: '/categories',
-  path: '/categories',
-  getParentRoute: () => SettingsRoute,
+  id: '/settings/categories',
+  path: '/settings/categories',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsAccountsRoute = SettingsAccountsRouteImport.update({
-  id: '/accounts',
-  path: '/accounts',
-  getParentRoute: () => SettingsRoute,
+  id: '/settings/accounts',
+  path: '/settings/accounts',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/budget': typeof BudgetRoute
   '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRouteWithChildren
   '/transactions': typeof TransactionsRoute
   '/settings/accounts': typeof SettingsAccountsRoute
   '/settings/categories': typeof SettingsCategoriesRoute
+  '/settings/': typeof SettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/budget': typeof BudgetRoute
   '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRouteWithChildren
   '/transactions': typeof TransactionsRoute
   '/settings/accounts': typeof SettingsAccountsRoute
   '/settings/categories': typeof SettingsCategoriesRoute
+  '/settings': typeof SettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/budget': typeof BudgetRoute
   '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRouteWithChildren
   '/transactions': typeof TransactionsRoute
   '/settings/accounts': typeof SettingsAccountsRoute
   '/settings/categories': typeof SettingsCategoriesRoute
+  '/settings/': typeof SettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,36 +87,38 @@ export interface FileRouteTypes {
     | '/'
     | '/budget'
     | '/reports'
-    | '/settings'
     | '/transactions'
     | '/settings/accounts'
     | '/settings/categories'
+    | '/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/budget'
     | '/reports'
-    | '/settings'
     | '/transactions'
     | '/settings/accounts'
     | '/settings/categories'
+    | '/settings'
   id:
     | '__root__'
     | '/'
     | '/budget'
     | '/reports'
-    | '/settings'
     | '/transactions'
     | '/settings/accounts'
     | '/settings/categories'
+    | '/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BudgetRoute: typeof BudgetRoute
   ReportsRoute: typeof ReportsRoute
-  SettingsRoute: typeof SettingsRouteWithChildren
   TransactionsRoute: typeof TransactionsRoute
+  SettingsAccountsRoute: typeof SettingsAccountsRoute
+  SettingsCategoriesRoute: typeof SettingsCategoriesRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -126,13 +128,6 @@ declare module '@tanstack/react-router' {
       path: '/transactions'
       fullPath: '/transactions'
       preLoaderRoute: typeof TransactionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports': {
@@ -156,43 +151,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings/': {
+      id: '/settings/'
+      path: '/settings'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof SettingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/settings/categories': {
       id: '/settings/categories'
-      path: '/categories'
+      path: '/settings/categories'
       fullPath: '/settings/categories'
       preLoaderRoute: typeof SettingsCategoriesRouteImport
-      parentRoute: typeof SettingsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/settings/accounts': {
       id: '/settings/accounts'
-      path: '/accounts'
+      path: '/settings/accounts'
       fullPath: '/settings/accounts'
       preLoaderRoute: typeof SettingsAccountsRouteImport
-      parentRoute: typeof SettingsRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface SettingsRouteChildren {
-  SettingsAccountsRoute: typeof SettingsAccountsRoute
-  SettingsCategoriesRoute: typeof SettingsCategoriesRoute
-}
-
-const SettingsRouteChildren: SettingsRouteChildren = {
-  SettingsAccountsRoute: SettingsAccountsRoute,
-  SettingsCategoriesRoute: SettingsCategoriesRoute,
-}
-
-const SettingsRouteWithChildren = SettingsRoute._addFileChildren(
-  SettingsRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BudgetRoute: BudgetRoute,
   ReportsRoute: ReportsRoute,
-  SettingsRoute: SettingsRouteWithChildren,
   TransactionsRoute: TransactionsRoute,
+  SettingsAccountsRoute: SettingsAccountsRoute,
+  SettingsCategoriesRoute: SettingsCategoriesRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
