@@ -2,13 +2,14 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { LayoutDashboard, ListOrdered, PiggyBank, BarChart3, Settings as SettingsIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const items = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const items: NavItem[] = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/transactions", label: "Transactions", icon: ListOrdered },
   { to: "/budget", label: "Budget", icon: PiggyBank },
   { to: "/reports", label: "Reports", icon: BarChart3 },
   { to: "/settings", label: "Settings", icon: SettingsIcon },
-] as const;
+];
 
 export function BottomNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
