@@ -12,6 +12,8 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Sora", "Manrope", ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -20,6 +22,8 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-deep-foreground: var(--primary-deep-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -50,79 +54,84 @@
 
 :root {
   --radius: 0.875rem;
-  --background: oklch(0.99 0.005 250);
-  --foreground: oklch(0.18 0.02 260);
+  /* Navy Trust palette */
+  --background: oklch(0.97 0.007 250);
+  --foreground: oklch(0.24 0.05 265);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 260);
+  --card-foreground: oklch(0.24 0.05 265);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 260);
-  --primary: oklch(0.55 0.18 265);
+  --popover-foreground: oklch(0.24 0.05 265);
+  --primary: oklch(0.5 0.09 250);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.01 250);
-  --secondary-foreground: oklch(0.25 0.03 260);
-  --muted: oklch(0.96 0.01 250);
-  --muted-foreground: oklch(0.5 0.02 260);
-  --accent: oklch(0.94 0.03 260);
-  --accent-foreground: oklch(0.25 0.03 260);
-  --destructive: oklch(0.6 0.22 25);
+  --primary-deep: oklch(0.24 0.05 265);
+  --primary-deep-foreground: oklch(0.95 0.01 250);
+  --secondary: oklch(0.95 0.01 250);
+  --secondary-foreground: oklch(0.3 0.04 260);
+  --muted: oklch(0.95 0.01 250);
+  --muted-foreground: oklch(0.5 0.02 255);
+  --accent: oklch(0.93 0.02 250);
+  --accent-foreground: oklch(0.3 0.04 260);
+  --destructive: oklch(0.58 0.18 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.92 0.01 255);
-  --input: oklch(0.92 0.01 255);
-  --ring: oklch(0.55 0.18 265);
+  --border: oklch(0.9 0.01 250);
+  --input: oklch(0.9 0.01 250);
+  --ring: oklch(0.5 0.09 250);
 
-  --income: oklch(0.62 0.16 152);
+  --income: oklch(0.58 0.12 152);
   --income-foreground: oklch(0.99 0 0);
-  --income-soft: oklch(0.94 0.05 152);
-  --expense: oklch(0.6 0.22 25);
+  --income-soft: oklch(0.95 0.04 152);
+  --expense: oklch(0.58 0.16 25);
   --expense-foreground: oklch(0.99 0 0);
-  --expense-soft: oklch(0.95 0.04 25);
-  --transfer: oklch(0.6 0.16 245);
+  --expense-soft: oklch(0.96 0.03 25);
+  --transfer: oklch(0.55 0.11 245);
   --transfer-foreground: oklch(0.99 0 0);
-  --transfer-soft: oklch(0.94 0.04 245);
+  --transfer-soft: oklch(0.94 0.03 245);
 
-  --chart-1: oklch(0.62 0.16 152);
-  --chart-2: oklch(0.6 0.22 25);
-  --chart-3: oklch(0.6 0.16 245);
-  --chart-4: oklch(0.7 0.18 70);
-  --chart-5: oklch(0.6 0.2 305);
+  --chart-1: oklch(0.5 0.09 250);
+  --chart-2: oklch(0.58 0.12 152);
+  --chart-3: oklch(0.58 0.16 25);
+  --chart-4: oklch(0.62 0.09 220);
+  --chart-5: oklch(0.4 0.06 275);
 }
 
 .dark {
-  --background: oklch(0.16 0.02 260);
-  --foreground: oklch(0.96 0.005 250);
-  --card: oklch(0.21 0.02 260);
-  --card-foreground: oklch(0.96 0.005 250);
-  --popover: oklch(0.21 0.02 260);
-  --popover-foreground: oklch(0.96 0.005 250);
-  --primary: oklch(0.72 0.16 265);
-  --primary-foreground: oklch(0.16 0.02 260);
-  --secondary: oklch(0.27 0.02 260);
-  --secondary-foreground: oklch(0.96 0.005 250);
-  --muted: oklch(0.27 0.02 260);
-  --muted-foreground: oklch(0.72 0.02 260);
-  --accent: oklch(0.32 0.03 260);
-  --accent-foreground: oklch(0.96 0.005 250);
-  --destructive: oklch(0.68 0.2 25);
+  --background: oklch(0.18 0.03 265);
+  --foreground: oklch(0.95 0.01 250);
+  --card: oklch(0.23 0.03 265);
+  --card-foreground: oklch(0.95 0.01 250);
+  --popover: oklch(0.23 0.03 265);
+  --popover-foreground: oklch(0.95 0.01 250);
+  --primary: oklch(0.68 0.1 245);
+  --primary-foreground: oklch(0.18 0.03 265);
+  --primary-deep: oklch(0.14 0.03 265);
+  --primary-deep-foreground: oklch(0.95 0.01 250);
+  --secondary: oklch(0.28 0.03 265);
+  --secondary-foreground: oklch(0.95 0.01 250);
+  --muted: oklch(0.28 0.03 265);
+  --muted-foreground: oklch(0.7 0.02 255);
+  --accent: oklch(0.32 0.03 265);
+  --accent-foreground: oklch(0.95 0.01 250);
+  --destructive: oklch(0.68 0.18 25);
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.72 0.16 265);
+  --ring: oklch(0.68 0.1 245);
 
-  --income: oklch(0.72 0.17 152);
-  --income-foreground: oklch(0.16 0.02 260);
+  --income: oklch(0.72 0.14 152);
+  --income-foreground: oklch(0.18 0.03 265);
   --income-soft: oklch(0.3 0.06 152);
-  --expense: oklch(0.72 0.2 25);
-  --expense-foreground: oklch(0.16 0.02 260);
+  --expense: oklch(0.72 0.18 25);
+  --expense-foreground: oklch(0.18 0.03 265);
   --expense-soft: oklch(0.32 0.08 25);
-  --transfer: oklch(0.72 0.15 245);
-  --transfer-foreground: oklch(0.16 0.02 260);
+  --transfer: oklch(0.72 0.12 245);
+  --transfer-foreground: oklch(0.18 0.03 265);
   --transfer-soft: oklch(0.3 0.06 245);
 
-  --chart-1: oklch(0.72 0.17 152);
-  --chart-2: oklch(0.72 0.2 25);
-  --chart-3: oklch(0.72 0.15 245);
-  --chart-4: oklch(0.78 0.16 70);
-  --chart-5: oklch(0.7 0.2 305);
+  --chart-1: oklch(0.72 0.12 245);
+  --chart-2: oklch(0.72 0.14 152);
+  --chart-3: oklch(0.72 0.18 25);
+  --chart-4: oklch(0.75 0.1 220);
+  --chart-5: oklch(0.7 0.09 275);
 }
 
 @layer base {
@@ -132,7 +141,12 @@
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  .tabular-nums { font-variant-numeric: tabular-nums; }
 }
