@@ -29,12 +29,10 @@ function SettingsPage() {
   const setSettings = useAppStore((s) => s.setSettings);
   const importAll = useAppStore((s) => s.importAll);
   const resetAll = useAppStore((s) => s.resetAll);
-  const snapshot = useAppStore((s) => ({
-    accounts: s.accounts,
-    categories: s.categories,
-    transactions: s.transactions,
-    budgets: s.budgets,
-  }));
+  const accounts = useAppStore((s) => s.accounts);
+  const categories = useAppStore((s) => s.categories);
+  const transactions = useAppStore((s) => s.transactions);
+  const budgets = useAppStore((s) => s.budgets);
   const fileRef = useRef<HTMLInputElement>(null);
 
   function onImport(e: React.ChangeEvent<HTMLInputElement>) {
@@ -99,7 +97,7 @@ function SettingsPage() {
           <Button
             variant="outline"
             onClick={() => {
-              downloadCSV(`shaheem-finance-${Date.now()}.csv`, exportCSV(snapshot));
+              downloadCSV(`shaheem-finance-${Date.now()}.csv`, exportCSV({ accounts, categories, transactions, budgets }));
               toast.success("Exported");
             }}
           >
