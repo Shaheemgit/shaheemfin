@@ -97,7 +97,7 @@ function SettingsPage() {
           <Button
             variant="outline"
             onClick={() => {
-              downloadCSV(`shaheem-finance-${Date.now()}.csv`, exportCSV(snapshot));
+              downloadCSV(`shaheem-finance-${Date.now()}.csv`, exportCSV({ accounts, categories, transactions, budgets }));
               toast.success("Exported");
             }}
           >
